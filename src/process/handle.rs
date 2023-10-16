@@ -32,7 +32,7 @@ impl Drop for Handle {
 
 impl Default for Handle {
     fn default() -> Self {
-        Self(0 as HANDLE);
+        Self(0 as HANDLE)
     }
 }
 
