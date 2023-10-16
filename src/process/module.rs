@@ -30,6 +30,20 @@ pub struct Module {
     module_data: Vec<u8>
 }
 
+impl Default for Module {
+    fn default() -> Self {
+        Module {
+            module_name: "".to_string(),
+            module_path: "".to_string(),
+            process_id: 0,
+            process_iswow64: false,
+            module_baseaddr: 0,
+            module_basesize: 0,
+            module_data: vec![],
+        }
+    }
+}
+
 impl Module {
     pub fn new(mname: String, mpath: String, pid: u32, mbaseaddr: usize, mbasesize: usize, proc: &crate::Process) -> Self {
         Module { 
