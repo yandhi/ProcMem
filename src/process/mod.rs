@@ -18,7 +18,7 @@ use winapi::{um::{tlhelp32::{TH32CS_SNAPPROCESS, TH32CS_SNAPMODULE, TH32CS_SNAPM
             };
 use log::trace;
 
-#[derive(Debug)]
+#[derive(Default, Debug)]
 
 /// contains name, pid and handle of a process 
 pub struct Process {
