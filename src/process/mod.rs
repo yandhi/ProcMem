@@ -16,7 +16,7 @@ use winapi::{um::{tlhelp32::{TH32CS_SNAPPROCESS, TH32CS_SNAPMODULE, TH32CS_SNAPM
                  }, 
              shared::{minwindef::{FALSE, LPCVOID, LPVOID, BOOL, PBOOL}, basetsd::SIZE_T}
             };
-use log::warn;
+use log::info;
 
 #[derive(Debug)]
 
@@ -205,10 +205,10 @@ impl Process {
         .expect("");
 
         if output.status.success() {
-            warn!("Process with PID {} was terminated", &self.process_id);
+            info!("Process with PID {} was terminated", &self.process_id);
             true
         } else {
-            warn!(
+            info!(
                 "Error killing process with PID {}: {}",
                 &self.process_id,
                 String::from_utf8_lossy(&output.stderr)
@@ -237,7 +237,7 @@ impl Process {
                 std::mem::size_of::<T>(), 
                 0 as *mut _
             ) == FALSE {
-                warn!("ReadProcessMemory failed. Error: {:?}", std::io::Error::last_os_error());
+                info!("ReadProcessMemory failed. Error: {:?}", std::io::Error::last_os_error());
                 return Err(ProcMemError::ReadMemoryError);
             } else {Ok(out)};
         } 
@@ -326,9 +326,9 @@ impl Process {
     /// let module = chrome.module("kernel32.dll")?;
     /// let mut value_buffer: i32 = 0;
     /// if !chrome.read_ptr(value.buffer.as_mut_ptr(), module.base_address() + 0x1337) {
-    ///     warn!("ReadMemory Failure");
+    ///     info!("ReadMemory Failure");
     /// } else {
-    ///     warn!("ReadMemory Success");
+    ///     info!("ReadMemory Success");
     /// }
     /// ```
     pub fn read_ptr<T: Copy>(&self, buf: *mut T, address: usize, count: usize) -> bool {
