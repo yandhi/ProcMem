@@ -12,7 +12,7 @@ use crate::ProcMemError;
 /// Wrapper around winapi HANDLE for automatic closing of the handle upon destruction
 
 
-#[derive(Debug)]
+#[derive(Default, Debug)]
 pub struct Handle(pub HANDLE);
 
 impl Deref for Handle {
