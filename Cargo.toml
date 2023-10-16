@@ -13,8 +13,10 @@ keywords = ["process", "module", "read-write", "memory", "patternscan"]
 categories = ["accessibility", "memory-management", "os::windows-apis", "games"]
 
 [dependencies]
+env_logger = "0.10.0"
 regex = "1.8.1"
 winapi = {version = "^0.3.9", features = ["handleapi","tlhelp32", "memoryapi", "processthreadsapi", "psapi", "winbase", "wow64apiset"]}
+log = "0.4.20"
 
 [package.metadata.docs.rs]
 default-target = "x86_64-pc-windows-msvc"
